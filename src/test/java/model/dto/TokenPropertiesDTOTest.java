@@ -9,20 +9,16 @@ class TokenPropertiesDTOTest {
 
     @Test
     void AssertEqualsProperties(){
-        TokenPropertiesDTO tokenPropertiesDTO = new TokenPropertiesDTO("user@example.com", "ROLE_USER");
+        TokenPropertiesDTO tokenPropertiesDTO = new TokenPropertiesDTO("user@example.com");
 
         assertEquals("user@example.com", tokenPropertiesDTO.email());
-        assertEquals("ROLE_USER", tokenPropertiesDTO.role());
-
     }
 
     @Test
     void NoAssertEqualsProperties(){
-        TokenPropertiesDTO tokenPropertiesDTO = new TokenPropertiesDTO("user@example.com", "ROLE_USER");
+        TokenPropertiesDTO tokenPropertiesDTO = new TokenPropertiesDTO("user@example.com");
 
         assertNotEquals("diferent@example.com", tokenPropertiesDTO.email());
-        assertNotEquals("ROLE_DIFERENT", tokenPropertiesDTO.role());
-
     }
 
 
