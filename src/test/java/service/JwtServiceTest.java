@@ -6,7 +6,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.nexus.security.model.dto.TokenPropertiesDTO;
 import com.nexus.security.properties.JwtProperties;
-import com.nexus.security.service.implementations.JwtServiceImplementations;
+import com.nexus.security.service.JwtService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ class JwtServiceTest {
     private JwtProperties jwtProperties;
 
     @InjectMocks
-    private JwtServiceImplementations jwtService;
+    private JwtService jwtService;
 
     @BeforeEach
     void setUp() {

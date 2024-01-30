@@ -9,13 +9,15 @@ class JwtPropertiesServiceTest {
 
     @Test
     void AssertEqualsProperties(){
-        JwtProperties jwtProperties = new JwtProperties("test");
+        JwtProperties jwtProperties = new JwtProperties();
+        jwtProperties.setSignature("test");
         assertEquals("test", jwtProperties.getSignature());
     }
 
     @Test
     void NotAssertEqualsProperties(){
-        JwtProperties jwtProperties = new JwtProperties("diferent");
+        JwtProperties jwtProperties = new JwtProperties();
+        jwtProperties.setSignature("outro");
         assertNotEquals("test", jwtProperties.getSignature());
     }
 }
