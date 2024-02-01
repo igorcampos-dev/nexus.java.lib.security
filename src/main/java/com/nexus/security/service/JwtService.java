@@ -8,6 +8,7 @@ import com.nexus.security.model.dto.TokenPropertiesDTO;
 import com.nexus.security.properties.JwtProperties;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
@@ -22,12 +23,7 @@ public class JwtService {
 
     public String encode(UserDetails userDetails) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSignature());
-            return JWT.create()
-                    .withIssuer("api-auth")
-                    .withClaim("email", userDetails.getUsername())
-                    .withExpiresAt(getExpirationDate())
-                    .sign(algorithm);
+            return this.generateToken(userDetails);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -35,16 +31,7 @@ public class JwtService {
 
     public TokenPropertiesDTO decode(String token) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSignature());
-            DecodedJWT tokenDecoded = JWT.require(algorithm)
-                    .withIssuer("api-auth")
-                    .build()
-                    .verify(token);
-
-            String email = tokenDecoded.getClaim("email").asString();
-
-            return new TokenPropertiesDTO(email);
-
+            return this.decryptToken(token);
         } catch (JWTDecodeException e){
             throw new JWTDecodeException("Houve um erro ao decodificar o token, está corrompido.");
         } catch (TokenExpiredException e){
@@ -53,6 +40,27 @@ public class JwtService {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    private String generateToken(UserDetails userDetails){
+        return JWT.create()
+                .withIssuer("api-auth")
+                .withClaim("email", userDetails.getUsername())
+                .withExpiresAt(getExpirationDate())
+                .sign(Algorithm.HMAC256(jwtProperties.getSignature()));
+    }
+
+    public TokenPropertiesDTO decryptToken(String token){
+        DecodedJWT tokenDecoded = JWT.require(Algorithm.HMAC256(jwtProperties.getSignature()))
+                .withIssuer("api-auth")
+                .build()
+                .verify(token);
+
+        return new TokenPropertiesDTO(
+                tokenDecoded.getClaim("email").asString()
+        );
+
+    }
+
 
     private Instant getExpirationDate(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
