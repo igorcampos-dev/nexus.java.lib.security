@@ -8,7 +8,6 @@ import com.nexus.security.model.dto.TokenPropertiesDTO;
 import com.nexus.security.properties.JwtProperties;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.time.Instant;

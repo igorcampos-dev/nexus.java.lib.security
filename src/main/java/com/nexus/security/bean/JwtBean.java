@@ -12,11 +12,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class JwtBean {
 
-    private final JwtProperties jwtProperties;
-
     @Bean
-    public JwtService jwtService(){
-        return new JwtService(jwtProperties);
+    public JwtProperties jwtProperties(){
+        return new JwtProperties();
     }
 
     @Bean
