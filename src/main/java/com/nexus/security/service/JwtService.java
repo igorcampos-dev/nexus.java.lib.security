@@ -54,12 +54,11 @@ public class JwtService {
                 .build()
                 .verify(token);
 
-        return new TokenPropertiesDTO(
-                tokenDecoded.getClaim("email").asString()
-        );
+        return TokenPropertiesDTO.builder()
+                                 .email(tokenDecoded.getClaim("email").asString())
+                                 .build();
 
     }
-
 
     private Instant getExpirationDate(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
