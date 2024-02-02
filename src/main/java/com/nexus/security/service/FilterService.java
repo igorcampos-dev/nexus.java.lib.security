@@ -12,9 +12,9 @@ import java.util.Optional;
 
 @Component
 @AllArgsConstructor
-public class FIlterService extends OncePerRequestFilter {
+public class FilterService extends OncePerRequestFilter {
 
-    private final Filter filter;
+    private final SecurityContextInjector contextInjector;
 
     @Override
     protected void doFilterInternal(@Nullable HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable FilterChain filterChain){
@@ -24,17 +24,16 @@ public class FIlterService extends OncePerRequestFilter {
             assert filterChain != null;
 
             recoverToken(Objects.requireNonNull(request))
-                    .ifPresent(filter::injectContext);
+                    .ifPresent(contextInjector::injectContext);
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            filter.exception(e, request, response);
+           contextInjector.exception(e, request, response);
         }
     }
 
-
     private Optional<String> recoverToken(HttpServletRequest request){
         return Optional.ofNullable(request.getHeader("Authorization"))
-                .map( authHeader -> authHeader.replace("Bearer", "").strip());
+                .map(authHeader -> authHeader.replace("Bearer", "").strip());
     }
 }
