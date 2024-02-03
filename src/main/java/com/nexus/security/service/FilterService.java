@@ -40,7 +40,6 @@ public class FilterService extends OncePerRequestFilter {
 
     private Optional<String> recoverToken(HttpServletRequest request){
         LOG.info(String.format("return of recover token is: %s", Optional.ofNullable(request.getHeader("Authorization")).map(authHeader -> authHeader.replace("Bearer", "").strip())));
-
         return Optional.ofNullable(request.getHeader("Authorization"))
                 .map(authHeader -> authHeader.replace("Bearer", "").strip());
     }
