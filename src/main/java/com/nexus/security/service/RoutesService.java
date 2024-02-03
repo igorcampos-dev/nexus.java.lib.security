@@ -2,6 +2,7 @@ package com.nexus.security.service;
 
 import com.nexus.security.model.dto.RoutesDTO;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -10,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import java.util.List;
 
+@Builder
 @AllArgsConstructor
 public class RoutesService {
 
