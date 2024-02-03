@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.nexus.security.model.dto.TokenPropertiesDTO;
-import com.nexus.security.properties.JwtProperties;
+import com.nexus.security.properties.SecurityProperties;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ import java.time.ZoneOffset;
 @AllArgsConstructor
 public class JwtService {
 
-    private final JwtProperties jwtProperties;
+    private final SecurityProperties jwtProperties;
 
     public String encode(UserDetails userDetails) {
         try {

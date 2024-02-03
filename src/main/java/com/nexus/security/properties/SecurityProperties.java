@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "spring.security.auth")
-public class JwtProperties {
+public class SecurityProperties {
     private String signature;
 }

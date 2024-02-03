@@ -1,6 +1,6 @@
 package com.nexus.security.bean;
 
-import com.nexus.security.properties.JwtProperties;
+import com.nexus.security.properties.SecurityProperties;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,12 +10,12 @@ import java.security.SecureRandom;
 
 @Component
 @AllArgsConstructor
-public class JwtBean {
+public class SecurityBean {
     private static final int BCRYPT_STRENGTH = 14;
 
     @Bean
-    public JwtProperties jwtProperties(){
-        return new JwtProperties();
+    public SecurityProperties securityProperties(){
+        return new SecurityProperties();
     }
 
     @Bean
