@@ -18,4 +18,4 @@ read commit_message
 git commit -m "$commit_message"
 echo "Committed changes with message: $commit_message"
 
-git push -u origin master
+git push origin master

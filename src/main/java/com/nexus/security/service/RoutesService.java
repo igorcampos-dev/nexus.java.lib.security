@@ -15,6 +15,7 @@ public class RoutesService {
 
     private final HttpSecurity http;
     private final List<RoutesDTO> routesList;
+    private final List<RoutesDTO> routesAdmin;
     private final FilterService filterService;
 
     public SecurityFilterChain configure() throws Exception {
@@ -24,6 +25,8 @@ public class RoutesService {
                 .authorizeHttpRequests(authorize -> {
                     routesList.forEach(routes -> authorize.requestMatchers(routes.method(),
                                                                            routes.route()).permitAll());
+                    routesAdmin.forEach(routes -> authorize.requestMatchers(routes.method(),
+                                                                            routes.route()).hasRole("ADMIN"));
                     authorize.anyRequest().authenticated();
                 }).addFilterBefore(filterService, UsernamePasswordAuthenticationFilter.class);
         return http.build();
