@@ -5,6 +5,8 @@ if [ -d "target" ]; then
     echo "Removed 'target' folder."
 fi
 
+mvn clean install
+
 git init
 echo "Initialized a new Git repository."
 
