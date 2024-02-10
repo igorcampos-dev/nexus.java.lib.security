@@ -3,6 +3,7 @@ package com.nexus.security.service;
 import com.nexus.security.model.dto.RoutesDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Builder
 @AllArgsConstructor
+@ConditionalOnProperty(name = "enable.security.routes", havingValue = "true")
 public class RoutesService {
 
     private final HttpSecurity http;

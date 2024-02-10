@@ -13,7 +13,6 @@ import lombok.AllArgsConstructor;
 public class SecurityBean {
     private static final int BCRYPT_STRENGTH = 14;
 
-
     @Bean
     public SecurityProperties securityProperties(){
         return new SecurityProperties();

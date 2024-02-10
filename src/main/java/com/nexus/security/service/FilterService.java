@@ -5,6 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.util.Objects;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 
 @Component
 @AllArgsConstructor
+@ConditionalOnProperty(name = "enable.security.routes", havingValue = "true")
 public class FilterService extends OncePerRequestFilter {
 
     public static final Logger LOG = Logger.getLogger(FilterService.class.getName());
