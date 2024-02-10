@@ -14,7 +14,6 @@ import java.util.List;
 
 @Builder
 @AllArgsConstructor
-@ConditionalOnProperty(name = "enable.security.routes", havingValue = "true")
 public class RoutesService {
 
     private final HttpSecurity http;

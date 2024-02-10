@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 
 @Component
 @AllArgsConstructor
-@ConditionalOnProperty(name = "enable.security.routes", havingValue = "true")
 public class FilterService extends OncePerRequestFilter {
 
     public static final Logger LOG = Logger.getLogger(FilterService.class.getName());
