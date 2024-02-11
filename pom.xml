@@ -24,6 +24,7 @@
 		<jakarta.validation.version>3.1.0-M1</jakarta.validation.version>
 		<spring.security.version>3.2.1</spring.security.version>
 		<jakarta.servlet.version>6.1.0-M1</jakarta.servlet.version>
+		<fasterxml.jackson.version>2.16.1</fasterxml.jackson.version>
 	</properties>
 
 	<dependencies>
@@ -65,6 +66,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${fasterxml.jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${fasterxml.jackson.version}</version>
 		</dependency>
 
 	</dependencies>

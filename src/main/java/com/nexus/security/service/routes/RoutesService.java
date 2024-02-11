@@ -1,9 +1,9 @@
-package com.nexus.security.service;
+package com.nexus.security.service.routes;
 
 import com.nexus.security.model.dto.RoutesDTO;
+import com.nexus.security.service.filter.FilterService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;

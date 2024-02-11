@@ -6,7 +6,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.nexus.security.model.dto.TokenPropertiesDTO;
 import com.nexus.security.properties.SecurityProperties;
-import com.nexus.security.service.JwtService;
+import com.nexus.security.service.jwt.JwtService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

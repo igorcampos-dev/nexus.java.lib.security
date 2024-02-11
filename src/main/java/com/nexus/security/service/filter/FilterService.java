@@ -1,24 +1,22 @@
-package com.nexus.security.service;
+package com.nexus.security.service.filter;
 
 import jakarta.annotation.Nullable;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class FilterService extends OncePerRequestFilter {
 
     public static final Logger LOG = Logger.getLogger(FilterService.class.getName());
-
     private final SecurityContextInjector contextInjector;
+    private final FilterSupport filterSupport;
 
     @Override
     protected void doFilterInternal(@Nullable HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable FilterChain filterChain){
@@ -30,18 +28,13 @@ public class FilterService extends OncePerRequestFilter {
 
             LOG.info(String.format("have received the data: response: %s, request: %s and filterchain: %s", response, request, filterChain));
 
-            recoverToken(Objects.requireNonNull(request))
+            filterSupport.recoverToken(Objects.requireNonNull(request))
                     .ifPresent(contextInjector::injectContext);
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-           contextInjector.exception(e, request, response);
+           filterSupport.exception(e, request, response);
         }
     }
 
-    private Optional<String> recoverToken(HttpServletRequest request){
-        LOG.info(String.format("return of recover token is: %s", Optional.ofNullable(request.getHeader("Authorization")).map(authHeader -> authHeader.replace("Bearer", "").strip())));
-        return Optional.ofNullable(request.getHeader("Authorization"))
-                .map(authHeader -> authHeader.replace("Bearer", "").strip());
-    }
 }
