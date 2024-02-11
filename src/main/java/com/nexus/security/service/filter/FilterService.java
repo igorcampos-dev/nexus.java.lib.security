@@ -16,10 +16,9 @@ public class FilterService extends OncePerRequestFilter {
 
     public static final Logger LOG = Logger.getLogger(FilterService.class.getName());
     private final SecurityContextInjector contextInjector;
-    private final FilterSupport filterSupport;
-
     @Override
     protected void doFilterInternal(@Nullable HttpServletRequest request, @Nullable HttpServletResponse response, @Nullable FilterChain filterChain){
+        FilterSupport filterSupport = new FilterSupport();
         try {
 
             assert request != null;
