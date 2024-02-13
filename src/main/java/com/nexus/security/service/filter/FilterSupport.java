@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -28,10 +29,11 @@ public class FilterSupport {
         httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        try {
-            objectMapper.writeValue(httpServletResponse.getWriter(), createError(e, request));
+
+        try (PrintWriter writer = httpServletResponse.getWriter()) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            objectMapper.writeValue(writer, createError(e, request));
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

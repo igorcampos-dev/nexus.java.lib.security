@@ -11,14 +11,14 @@ class TokenPropertiesDTOTest {
     void AssertEqualsProperties(){
         TokenPropertiesDTO tokenPropertiesDTO = new TokenPropertiesDTO("user@example.com");
 
-        assertEquals("user@example.com", tokenPropertiesDTO.email());
+        assertEquals("user@example.com", tokenPropertiesDTO.value());
     }
 
     @Test
     void NoAssertEqualsProperties(){
         TokenPropertiesDTO tokenPropertiesDTO = new TokenPropertiesDTO("user@example.com");
 
-        assertNotEquals("diferent@example.com", tokenPropertiesDTO.email());
+        assertNotEquals("diferent@example.com", tokenPropertiesDTO.value());
     }
 
 

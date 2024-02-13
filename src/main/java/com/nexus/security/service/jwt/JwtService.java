@@ -43,7 +43,7 @@ public class JwtService {
     private String generateToken(UserDetails userDetails){
         return JWT.create()
                 .withIssuer("api-auth")
-                .withClaim("email", userDetails.getUsername())
+                .withClaim("value", userDetails.getUsername())
                 .withExpiresAt(getExpirationDate())
                 .sign(Algorithm.HMAC256(jwtProperties.getSignature()));
     }
@@ -55,7 +55,7 @@ public class JwtService {
                 .verify(token);
 
         return TokenPropertiesDTO.builder()
-                                 .email(tokenDecoded.getClaim("email").asString())
+                                 .value(tokenDecoded.getClaim("value").asString())
                                  .build();
 
     }
