@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.nexus.security.model.dto.TokenPropertiesDTO;
+import com.nexus.security.model.dto.TokenProperties;
 import com.nexus.security.properties.SecurityProperties;
 import com.nexus.security.service.jwt.JwtService;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +18,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Collection;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -37,48 +38,13 @@ class JwtServiceTest {
 
     @Test
     void testEncodeAndDecodeValidToken() {
-        UserDetails userDetails = new UserDetails() {
-            @Override
-            public Collection<? extends GrantedAuthority> getAuthorities() {
-                return null;
-            }
-
-            @Override
-            public String getPassword() {
-                return null;
-            }
-
-            @Override
-            public String getUsername() {
-                return "user@example.com";
-            }
-
-            @Override
-            public boolean isAccountNonExpired() {
-                return false;
-            }
-
-            @Override
-            public boolean isAccountNonLocked() {
-                return false;
-            }
-
-            @Override
-            public boolean isCredentialsNonExpired() {
-                return false;
-            }
-
-            @Override
-            public boolean isEnabled() {
-                return false;
-            }
-
-        };
-
+        UserDetails userDetails = mockUserDetails();
         String token = jwtService.encode(userDetails);
         assertNotNull(token);
-        TokenPropertiesDTO decodedToken = jwtService.decode(token);
+        TokenProperties decodedToken = jwtService.decode(token);
         assertNotNull(decodedToken);
+        assertEquals(userDetails.getUsername(), decodedToken.username());
+        assertEquals(userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList(), decodedToken.authorities());
     }
 
     @Test
@@ -103,7 +69,7 @@ class JwtServiceTest {
         return new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return null;
+                return List.of(() -> "ROLE_USER", () -> "ROLE_ADMIN");
             }
 
             @Override

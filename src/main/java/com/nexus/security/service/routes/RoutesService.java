@@ -1,6 +1,6 @@
 package com.nexus.security.service.routes;
 
-import com.nexus.security.model.dto.RoutesDTO;
+import com.nexus.security.model.dto.Routes;
 import com.nexus.security.service.filter.FilterService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,8 +17,8 @@ import java.util.List;
 public class RoutesService {
 
     private final HttpSecurity http;
-    private final List<RoutesDTO> routesList;
-    private final List<RoutesDTO> routesAdmin;
+    private final List<Routes> routesList;
+    private final List<Routes> routesAdmin;
     private final FilterService filterService;
 
     public SecurityFilterChain configure() throws Exception {

@@ -2,4 +2,4 @@ package com.nexus.security.model.dto;
 
 import org.springframework.http.HttpMethod;
 
-public record RoutesDTO(String route, HttpMethod method){}
+public record Routes(String route, HttpMethod method){}

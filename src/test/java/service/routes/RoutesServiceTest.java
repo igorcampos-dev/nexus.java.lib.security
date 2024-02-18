@@ -1,6 +1,6 @@
 package service.routes;
 
-import com.nexus.security.model.dto.RoutesDTO;
+import com.nexus.security.model.dto.Routes;
 import com.nexus.security.service.filter.FilterService;
 import com.nexus.security.service.routes.RoutesService;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,8 +38,8 @@ class RoutesServiceTest {
 
     @Test
     void testConfigure() throws Exception {
-        List<RoutesDTO> routesList = Arrays.asList(new RoutesDTO("/public", HttpMethod.GET), new RoutesDTO("/public", HttpMethod.POST));
-        List<RoutesDTO> routesAdmin = Arrays.asList(new RoutesDTO("/admin", HttpMethod.GET), new RoutesDTO("/admin", HttpMethod.POST));
+        List<Routes> routesList = Arrays.asList(new Routes("/public", HttpMethod.GET), new Routes("/public", HttpMethod.POST));
+        List<Routes> routesAdmin = Arrays.asList(new Routes("/admin", HttpMethod.GET), new Routes("/admin", HttpMethod.POST));
 
         routesService = RoutesService.builder()
                 .http(http)

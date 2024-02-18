@@ -1,6 +1,6 @@
 package model.dto;
 
-import com.nexus.security.model.dto.RoutesDTO;
+import com.nexus.security.model.dto.Routes;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +11,7 @@ class RoutesDTOTest {
     void testRoutesDTO() {
         String route = "/api/users";
         HttpMethod method = HttpMethod.GET;
-        RoutesDTO routesDTO = new RoutesDTO(route, method);
+        Routes routesDTO = new Routes(route, method);
         assertEquals(route, routesDTO.route());
         assertEquals(method, routesDTO.method());
     }
