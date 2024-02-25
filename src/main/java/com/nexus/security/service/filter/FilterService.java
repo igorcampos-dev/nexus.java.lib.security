@@ -35,5 +35,4 @@ public class FilterService extends OncePerRequestFilter {
            filterSupport.exception(e, request, response);
         }
     }
-
 }
