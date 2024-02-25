@@ -1,6 +1,6 @@
 package service.filter;
 
-import com.nexus.security.model.dto.Error;
+import com.nexus.security.dto.Error;
 import com.nexus.security.service.filter.FilterSupport;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

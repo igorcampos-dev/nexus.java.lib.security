@@ -1,6 +1,6 @@
 package model.dto;
 
-import com.nexus.security.model.dto.Error;
+import com.nexus.security.dto.Error;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

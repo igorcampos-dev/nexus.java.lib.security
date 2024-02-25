@@ -1,9 +1,8 @@
 package model.dto;
 
-import com.nexus.security.model.dto.TokenProperties;
+import com.nexus.security.properties.TokenProperties;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

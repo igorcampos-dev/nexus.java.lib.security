@@ -1,6 +1,6 @@
 package model.dto;
 
-import com.nexus.security.model.dto.Routes;
+import com.nexus.security.dto.Routes;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 import static org.junit.jupiter.api.Assertions.assertEquals;

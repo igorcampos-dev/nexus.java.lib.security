@@ -1,6 +1,6 @@
 package com.nexus.security.service.routes;
 
-import com.nexus.security.model.dto.Routes;
+import com.nexus.security.dto.Routes;
 import com.nexus.security.service.filter.FilterService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

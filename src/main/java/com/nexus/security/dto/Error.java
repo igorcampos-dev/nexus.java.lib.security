@@ -1,4 +1,4 @@
-package com.nexus.security.model.dto;
+package com.nexus.security.dto;
 
 import lombok.Builder;
 

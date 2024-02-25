@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.nexus.security.model.dto.TokenProperties;
+import com.nexus.security.properties.TokenProperties;
 import com.nexus.security.properties.SecurityProperties;
 import com.nexus.security.service.jwt.JwtService;
 import org.junit.jupiter.api.BeforeEach;

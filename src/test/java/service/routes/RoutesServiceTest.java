@@ -1,6 +1,6 @@
 package service.routes;
 
-import com.nexus.security.model.dto.Routes;
+import com.nexus.security.dto.Routes;
 import com.nexus.security.service.filter.FilterService;
 import com.nexus.security.service.routes.RoutesService;
 import org.junit.jupiter.api.BeforeEach;

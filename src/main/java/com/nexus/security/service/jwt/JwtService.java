@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.nexus.security.model.dto.TokenProperties;
+import com.nexus.security.properties.TokenProperties;
 import com.nexus.security.properties.SecurityProperties;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import lombok.AllArgsConstructor;
@@ -60,7 +60,7 @@ public class JwtService {
         return TokenProperties.builder()
                 .username(tokenDecoded.getClaim("username").asString())
                 .authorities(tokenDecoded.getClaim("authorities").asList(String.class))
-                                 .build();
+                .build();
     }
 
     private Instant getExpirationDate(){
