@@ -8,34 +8,10 @@ uma biblioteca de segurança desenvolvida como parte do projeto Nexus. O objetiv
 - **Geração de funcionalidades do Spring Security**: Metodos de autenticação e permissoes facilitadas para utilização em outros projetos
 - **Testes Abrangentes**: A biblioteca é acompanhada por testes unitários para garantir o correto funcionamento das funcionalidades.
 
-## Como usar
+## Como Utilizar
 
-Para usar esta biblioteca, você precisa adicionar as seguintes dependências e repositórios ao seu arquivo `pom.xml`:
+Siga os passos abaixo para começar a usar a Biblioteca de Utilidades:
 
-### Dependências
-
-Inclua a seguinte dependência dentro da tag `<dependencies>` do seu `pom.xml`:
-
-```xml
-<dependencies>
-    <dependency>
-        <groupId>com.nexus</groupId>
-        <artifactId>security</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <!-- outras dependências aqui -->
-</dependencies>
-```
-
-Inclua a seguinte dependência dentro da tag `<repositories>` do seu `pom.xml`:
-
-```xml
-<repositories>
-    <repository>
-        <id>lib-security</id>
-        <url>https://raw.githubusercontent.com/igorcampos-dev/nexus.java.lib.security/master/target/</url>
-    </repository>
-    <!-- outros repositórios aqui -->
-</repositories>
-
-```
+1. Acesse o site do [JitPack](https://jitpack.io/#igorcampos-dev/nexus.java.lib.security) através deste link.
+2. Na seção de **Releases**, clique no botão "Get It" abaixo do campo "Status". Isso indica que a biblioteca está compilando corretamente.
+3. No seu projeto, adicione as duas dependências conforme explicado no site do JitPack.
