@@ -40,11 +40,14 @@ class RoutesServiceTest {
     void testConfigure() throws Exception {
         List<Routes> routesList = Arrays.asList(new Routes("/public", HttpMethod.GET), new Routes("/public", HttpMethod.POST));
         List<Routes> routesAdmin = Arrays.asList(new Routes("/admin", HttpMethod.GET), new Routes("/admin", HttpMethod.POST));
+        List<Routes> routesUser = Arrays.asList(new Routes("/user", HttpMethod.GET), new Routes("/user", HttpMethod.POST));
+
 
         routesService = RoutesService.builder()
                 .http(http)
-                .routesList(routesList)
-                .routesAdmin(routesAdmin)
+                .getPermitHasRoleUser(routesUser)
+                .permitAllRoutes(routesList)
+                .permitHasRoleAdmin(routesAdmin)
                 .filterService(filterService)
                 .build();
 
