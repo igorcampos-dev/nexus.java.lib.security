@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nexus.security.dto.Error;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -20,23 +21,20 @@ public class FilterSupport {
     public static final Logger LOG = Logger.getLogger(FilterService.class.getName());
 
     protected Optional<String> recoverToken(HttpServletRequest request){
-        LOG.info(String.format("return of recover token is: %s", Optional.ofNullable(request.getHeader("Authorization")).map(authHeader -> authHeader.replace("Bearer", "").strip())));
         return Optional.ofNullable(request.getHeader("Authorization"))
                 .map(authHeader -> authHeader.replace("Bearer", "").strip());
     }
 
+    @SneakyThrows(IOException.class)
     protected void exception(Exception e, HttpServletRequest request, HttpServletResponse httpServletResponse){
         httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
 
-        try (PrintWriter writer = httpServletResponse.getWriter()) {
+        PrintWriter writer = httpServletResponse.getWriter();
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
             objectMapper.writeValue(writer, createError(e, request));
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
     }
 
     public Error createError(Exception e, HttpServletRequest request) {
@@ -48,5 +46,4 @@ public class FilterSupport {
                 .build();
 
     }
-
 }
