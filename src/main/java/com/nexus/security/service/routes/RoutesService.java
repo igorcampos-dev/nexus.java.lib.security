@@ -17,8 +17,9 @@ import java.util.List;
 public class RoutesService {
 
     private final HttpSecurity http;
-    private final List<Routes> routesList;
-    private final List<Routes> routesAdmin;
+    private final List<Routes> permitAllRoutes;
+    private final List<Routes> permitHasRoleAdmin;
+    private final List<Routes> getPermitHasRoleUser;
     private final FilterService filterService;
 
     public SecurityFilterChain configure() throws Exception {
@@ -26,10 +27,16 @@ public class RoutesService {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> {
-                    routesList.forEach(routes -> authorize.requestMatchers(routes.method(),
-                                                                           routes.route()).permitAll());
-                    routesAdmin.forEach(routes -> authorize.requestMatchers(routes.method(),
-                                                                            routes.route()).hasRole("ADMIN"));
+
+                    permitAllRoutes.forEach(routes -> authorize.requestMatchers(routes.method(),
+                                                                                routes.route()).permitAll());
+
+                    permitHasRoleAdmin.forEach(routes -> authorize.requestMatchers(routes.method(),
+                                                                                   routes.route()).hasRole("ADMIN"));
+
+                    getPermitHasRoleUser.forEach(routes -> authorize.requestMatchers(routes.method(),
+                                                                                     routes.route()).hasRole("USER"));
+
                     authorize.anyRequest().authenticated();
                 }).addFilterBefore(filterService, UsernamePasswordAuthenticationFilter.class);
         return http.build();
